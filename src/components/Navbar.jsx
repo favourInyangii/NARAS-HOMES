@@ -1,8 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { assets } from '../assets/assets'
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
+
+  useEffect(() => {
+    if (showMobileMenu) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [showMobileMenu])
 
   return (
     <div className="absolute top-0 left-0 w-full z-10">
@@ -43,10 +54,10 @@ const Navbar = () => {
         </div>
 
         <ul className="flex flex-col items-center gap-4 mt-5 px-5 text-lg font-medium">
-          <a href="#Header">Home</a>
-          <a href="#About">About</a>
-          <a href="#Projects">Projects</a>
-          <a href="#Testimonials">Testimonials</a>
+          <a onClick={() => setShowMobileMenu(false)} href="#Header">Home</a>
+          <a onClick={() => setShowMobileMenu(false)} href="#About">About</a>
+          <a onClick={() => setShowMobileMenu(false)} href="#Projects">Projects</a>
+          <a onClick={() => setShowMobileMenu(false)} href="#Testimonials">Testimonials</a>
         </ul>
       </div>
     </div>
