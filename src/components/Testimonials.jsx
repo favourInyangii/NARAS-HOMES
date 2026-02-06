@@ -1,4 +1,4 @@
-import { testimonialsData } from "../assets/assets"
+import { assets, testimonialsData } from "../assets/assets"
 const Testimonials = () => {
     return (
         <div className="container mx-auto py-10 lg:px-32 w-full overflow-hidden">
@@ -9,6 +9,13 @@ const Testimonials = () => {
                 {testimonialsData.map((testimonial, index) => (
                     <div key={index} className="max-w-[340px] border shadow-lg rounded px-8 py-12 text-center">
                         <img className="w-20 h-20 rounded-full mx-auto mb-4" src={testimonial.image} alt={testimonial.alt} />
+                        <h2>{testimonial.name}</h2>
+                        <p>{testimonial.title}</p>
+                        <div>
+                            {Array.from({ length: testimonial.rating }, (item, index) => (
+                                <img key={index} src={assets.star_icon} alt="" />
+                            ))}
+                        </div>
                     </div>
                 ))}
             </div>
